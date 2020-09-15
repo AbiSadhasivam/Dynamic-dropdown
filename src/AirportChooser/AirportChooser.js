@@ -19,6 +19,13 @@ const AirportChooser = (props) => {
   const toggleLoader = (isVisible) => {
     setLoaderVisiblity(isVisible);
   };
+
+  const reset = () => {
+    setLastEle(noOfElementsToAdd);
+    setScrollTop(0);
+    setToggleDropDown(false);
+  };
+
   /// @name fetchDatafromURL
   /// Fetches the data from the URL specified
   ///
@@ -30,6 +37,7 @@ const AirportChooser = (props) => {
         .then((data) => {
           setAirportData(data);
           setSelectedAirports(data.slice(0, noOfElementsToAdd));
+          reset();
           toggleLoader(false);
         })
         .catch((err) => {
