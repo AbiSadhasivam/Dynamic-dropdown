@@ -4,6 +4,7 @@
   background: #fff;
   border: 1px solid #000;
   border-radius: 3px;
+  cursor: pointer;
   font-size: 16px;
   font-weight: 600;
   text-transform: capitalize;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Loader from './Loader/Loader';
 
 import './AirportChooser.css';
 
@@ -13,16 +14,28 @@ const AirportChooser = (props) => {
     +props.noOfElementsToAdd || 15
   );
   const [lastEle, setLastEle] = useState(noOfElementsToAdd);
+  const [showLoader, setLoaderVisiblity] = useState(false);
 
+  const toggleLoader = (isVisible) => {
+    setLoaderVisiblity(isVisible);
+  };
   /// @name fetchDatafromURL
   /// Fetches the data from the URL specified
   ///
   const fetchDatafromURL = () => {
+    toggleLoader(true);
     fetch(url).then((res) => {
-      res.json().then((data) => {
-        setAirportData(data);
-        setSelectedAirports(data.slice(0, noOfElementsToAdd));
-      });
+      res
+        .json()
+        .then((data) => {
+          setAirportData(data);
+          setSelectedAirports(data.slice(0, noOfElementsToAdd));
+          toggleLoader(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          toggleLoader(false);
+        });
     });
   };
 
@@ -81,6 +94,7 @@ const AirportChooser = (props) => {
 
   return (
     <div>
+      {showLoader && <Loader></Loader>}
       <button className='btn-primary' onClick={fetchDatafromURL}>
         View Airport List
       </button>
@@ -94,7 +108,7 @@ const AirportChooser = (props) => {
             className={toggleDropDown ? 'open custom-select' : 'custom-select'}
           >
             <div className='custom-select__trigger'>
-              <span>{selectedAirport}</span>
+              <span>{selectedAirport || 'Select an airport'}</span>
               <div className='arrow'></div>
             </div>
             <div className='custom-options'>
