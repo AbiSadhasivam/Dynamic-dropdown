@@ -9,7 +9,7 @@ function App() {
     <div className='App'>
       <AirportChooser
         noOfElementsToAdd='10'
-        url='./data1.json'
+        url='./data.json'
       ></AirportChooser>
     </div>
   );

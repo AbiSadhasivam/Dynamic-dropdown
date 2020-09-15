@@ -29,7 +29,7 @@ A react component built to load airport details from a json and dynamically load
 An example has been implemented in the App.js
 
 The component takes the following as props
-1. url - URL of the JSON which has the airport details similar to the data in the [link ](public/data.json)
+1. url - URL of the JSON which has the airport details similar to the data in the [link ](https://github.com/AbiSadhasivam/Dynamic-dropdown/blob/master/public/data.json)
 2. noOfElementsToAdd - the number of elements to be added on every scroll.
 
 ### Suggested Improvements 
